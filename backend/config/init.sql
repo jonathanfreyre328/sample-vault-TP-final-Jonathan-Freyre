@@ -4,19 +4,19 @@ SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 -- 1. Borrar la base de datos si existe
-DROP DATABASE IF EXISTS samplevaultrf2;
-CREATE DATABASE samplevaultrf2;
-USE samplevaultrf2;
+DROP DATABASE IF EXISTS samplevault;
+CREATE DATABASE samplevault;
+USE samplevault;
 
 -- 2. Configuración de usuario de DB (Restricción de privilegios)
 -- Primero creamos la identidad (si no existe)
-CREATE USER IF NOT EXISTS 'samplevaultrf2'@'localhost' IDENTIFIED BY 'samplevaultrf2';
+CREATE USER IF NOT EXISTS 'samplevault'@'localhost' IDENTIFIED BY 'samplevault';
 
 -- Luego asignamos los permisos específicos
 -- Arquitectura de seguridad conocida como el "Principio de Menor Privilegio"
 -- Aplicamos SELECT para lectura y EXECUTE para poder invocar los Stored Procedures.
 -- Esto impide INSERT, UPDATE y DELETE directos desde el código de la aplicación.
-GRANT SELECT, EXECUTE ON samplevaultrf2.* TO 'samplevaultrf2'@'localhost';
+GRANT SELECT, EXECUTE ON samplevault.* TO 'samplevault'@'localhost';
 
 -- 3. Tabla de Roles (Normalización)
 CREATE TABLE roles (
