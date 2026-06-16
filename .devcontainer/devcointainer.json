@@ -1,0 +1,15 @@
+{
+  "name": "SampleVault",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "forwardPorts": [3000],
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "bierner.markdown-preview-github-styles",
+        "ritwickdey.LiveServer"
+      ]
+    }
+  }
+}
