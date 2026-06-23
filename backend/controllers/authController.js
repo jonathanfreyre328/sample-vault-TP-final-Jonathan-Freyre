@@ -29,6 +29,11 @@ class AuthController
                 return res.status(400).json({ message: "Usuario y contraseña son requeridos." });
             }
 
+                // -- Validacion de longitud minima de contraseña --
+                if (password.length < 6){
+                    retun res.status(400).json({ message: "La contraseña es demasiado corta,"});
+
+                }
             const hashedPassword = await bcrypt.hash(password, 10);            
             
             // 2. Creación mediante el repositorio (que usa el SP sp_create_user)

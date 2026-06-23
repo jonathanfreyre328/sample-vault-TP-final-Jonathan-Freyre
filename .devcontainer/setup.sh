@@ -28,15 +28,4 @@ nvm use 24
 cd backend
 npm install
 
-echo "Creando archivo .env..."
-cat <<EOF > .env
-PORT=3000
-DB_HOST=localhost
-DB_USER=samplevault
-DB_PASS=samplevault
-DB_NAME=samplevault
-JWT_SECRET=tu_clave_secreta_super_segura
-NODE_ENV=production
-EOF
-
 echo "🚀 Configuración de entorno completada con éxito."
