@@ -89,15 +89,11 @@ class SampleController
             }
 
             // 2. Ejecutar sp_delete_sample en la base de datos
-            await sampleRepo.delete(id, userId);
-
-            // 3. Eliminación física del archivo (Gestión de recursos)
-            fileHelper.deleteFile(sample.file_path); 
+            const deleted = await sampleRepo.delete(id, userId);
             
             return res.json({ message: "Registro eliminado y archivo físico removido con éxito." });
         }
-        catch (error)
-        {
+        catch (error) {
             res.status(500).json({ message: "Error al eliminar el sample.", error: error.message });
         }
     }

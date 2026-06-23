@@ -61,3 +61,21 @@ testUtils.createTestButton("Test Subir Sample (Simulado)", async (btn) => {
     testUtils.log(data);
     if (response.ok) testUtils.setSuccess(btn);
 });
+
+
+testUtils.createTestButton("Test Borrar Sample Inexistente ID 99999", async (btn) => {
+    await okLogin();
+    const token = localStorage.getItem('test_token');
+
+    const response = await fetch('/api/samples/99999', {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
+
+    const data = await response.json();
+    testUtils.log(data);
+
+    if (response.status === 404 && data.message === "El sample no existe o no tienes permisos para eliminarlo.") {
+        testUtils.setSuccess(btn);
+    }
+});
