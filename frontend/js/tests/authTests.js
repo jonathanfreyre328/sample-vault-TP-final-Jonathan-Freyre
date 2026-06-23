@@ -48,14 +48,17 @@ testUtils.createTestButton("Test Login - Usuario Incorrecto (Juan y 12345)", asy
 
 //agregado boton de testing contraseña corta
 
-testUtils.createTestButton("Test Register - Contraseña Corta ( < 6 caracteres" ), async (btn) => {
-    const response = await fetch('/api/auth/register',{
+testUtils.createTestButton("Test Register - Contraseña Corta (< 6 caracteres)", async (btn) => {
+    const response = await fetch('/api/auth/register', {
         method: 'POST',
-        headers: {'Content-Type' : 'aplication/json'},
-        body: JSON.stringify({username: 'testpass', password: '123'})
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: 'testcorto', password: '123' })
     });
+    
+    const data = await response.json();
+    testUtils.log(data);
 
-    if (response.status === 400 && data.message === "La contraseña es demasiado corta"){
+    if (response.status === 400 && data.message === "La contraseña es demasiado corta") {
         testUtils.setSuccess(btn);
     }
-}
+});
